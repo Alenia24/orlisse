@@ -4,6 +4,9 @@ const app = express();
 
 const PORT = 5000;
 
+// Import the database
+import "./database/database.js"
+
 app.get("/", (req, res) => {
     res.send("Welcome to the Orlisse API.")
 })
