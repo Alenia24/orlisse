@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 
-// import addressSchema from "./models/address.js";
+import addressSchema from "../address/address";
 
 const userSchema = new mongoose.Schema(
   {
