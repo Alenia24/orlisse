@@ -19,6 +19,22 @@ const imageSchema = new mongoose.Schema(
   { _id: false },
 );
 
+// Define variant Schema
+const variantSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true,
+    },
+    sku: {
+        type: String,
+        required: true,
+    },
+    countInStock: {
+        type: Number,
+        default: 0,
+    }
+})
+
 // Define review Schema
 const reviewSchema = new mongoose.Schema(
   {
@@ -71,6 +87,7 @@ const productSchema = new mongoose.Schema(
       required: true,
       min: 0,
     },
+    variant: [variantSchema],
     countInStock: {
       type: Number,
       required: true,
@@ -84,6 +101,10 @@ const productSchema = new mongoose.Schema(
       min: 0,
       max: 5,
     },
+    numReviews: {
+        type: Number,
+        default: 0,
+    }
   },
   { timestamps: true },
 );
