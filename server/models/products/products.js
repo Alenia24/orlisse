@@ -1,17 +1,46 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose from "mongoose";
 
 // Define image Schema
-const imageSchema = new mongoose.Schema({
-  url: {
-    type: String,
-    required: true,
+const imageSchema = new mongoose.Schema(
+  {
+    url: {
+      type: String,
+      required: true,
+    },
+    altText: {
+      type: String,
+    },
     // To determine if this is the main image to display
     isMain: {
       type: Boolean,
       default: false,
     },
   },
-});
+  { _id: false },
+);
+
+// Define review Schema
+const reviewSchema = new mongoose.Schema(
+  {
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+    name: {
+      type: String,
+      default: "Anonymous",
+    },
+    rating: {
+      type: Number,
+      required: ture,
+      min: 1,
+      max: 5,
+    },
+    comment: String,
+  },
+  { timestamps: true },
+);
 
 // Define Product Schema
 const productSchema = new mongoose.Schema(
@@ -48,7 +77,7 @@ const productSchema = new mongoose.Schema(
       default: 0,
     },
     images: [imageSchema],
-    // reviews: [reviewSchema],
+    reviews: [reviewSchema],
     rating: {
       type: Number,
       default: 5,
